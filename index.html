@@ -492,10 +492,18 @@
       setTimeout(typeHeroCopy, 350);
     });
 
-    const buildMailtoBody = (form) => {
-      const data = new FormData(form);
-      const lines = [
-        `Form: ${form.dataset.formName || 'Website lead form'}`,
+    document.querySelectorAll('.lead-form').forEach((form) => {
+      form.addEventListener('submit', () => {
+        const button = form.querySelector('button[type="submit"]');
+        if (button) {
+          button.disabled = true;
+          button.textContent = 'Sending...';
+        }
+      });
+    });
+  </script>
+</body>
+</html>ataset.formName || 'Website lead form'}`,
         `Property address: ${data.get('property-address') || ''}`,
         `Name: ${data.get('name') || ''}`,
         `Phone: ${data.get('phone') || ''}`,
