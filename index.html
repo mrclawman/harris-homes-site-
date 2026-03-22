@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harris Homes | Sell Your Property As-Is</title>
+  <meta name="description" content="Sell your property as-is with Harris Homes. Residential, commercial, and land acquisitions in Nashville, Clarksville, Guthrie, and surrounding areas." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark-light.svg" />
+  <style>
+    :root {
+      --bg: #071114;
+      --bg-2: #0b171b;
+      --surface: rgba(255,255,255,0.05);
+      --surface-2: rgba(255,255,255,0.09);
+      --line: rgba(255,255,255,0.11);
+      --text: #f6f5f2;
+      --muted: #b3bdc2;
+      --red: #d12b38;
+      --red-2: #ff6671;
+      --gold: #f0d3a7;
+      --shadow: 0 28px 70px rgba(0,0,0,0.34);
+      --radius: 24px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(209,43,56,0.22), transparent 24%),
+        radial-gradient(circle at 86% 18%, rgba(240,211,167,0.10), transparent 22%),
+        linear-gradient(180deg, #040b0e 0%, var(--bg) 42%, var(--bg-2) 100%);
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 34%, transparent 86%);
+      opacity: 0.14;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 17, 20, 0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo, .brand-mark-small { height: 34px; width: auto; }
+    .brand-mark-small { display: none; }
+    .nav-links { display: flex; gap: 22px; color: var(--muted); font-size: 0.95rem; }
+    .nav-links a:hover { color: white; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border-radius: 999px; padding: 14px 22px; font-weight: 700;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red), var(--red-2));
+      color: white;
+      box-shadow: 0 18px 36px rgba(209,43,56,0.28);
+    }
+
+    .hero {
+      position: relative;
+      padding: 88px 0 22px;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 999px; filter: blur(44px); pointer-events: none;
+      animation: drift 10s ease-in-out infinite; opacity: 0.5;
+    }
+    .orb-1 { width: 220px; height: 220px; background: rgba(209,43,56,0.2); top: -50px; right: -40px; }
+    .orb-2 { width: 160px; height: 160px; background: rgba(240,211,167,0.10); left: -20px; top: 120px; animation-delay: -3s; }
+    @keyframes drift { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr; gap: 26px; align-items: center; position: relative; z-index: 1;
+    }
+    h1,h2,h3 { line-height: 1.04; margin: 0 0 14px; }
+    h1 { font-size: clamp(2.9rem, 7vw, 5.8rem); letter-spacing: -0.06em; max-width: 8.5ch; }
+    h2 { font-size: clamp(1.8rem, 3.2vw, 2.9rem); letter-spacing: -0.04em; }
+    h3 { font-size: 1.08rem; }
+    .lead { font-size: 1.06rem; color: var(--muted); max-width: 56ch; margin-bottom: 22px; }
+    .type-line {
+      min-height: 1.6em;
+      margin-top: 4px;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      opacity: 0.95;
+    }
+    .type-line .cursor {
+      display: inline-block;
+      width: 0.65ch;
+      color: var(--red-2);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .divider-band {
+      padding: 18px 0 42px;
+    }
+    .transition-art {
+      position: relative;
+      height: 120px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.03), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 80%);
+    }
+    .transition-art::before,
+    .transition-art::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      display: block;
+    }
+    .transition-art::before {
+      left: -2%;
+      top: 28px;
+      width: 72%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(240,211,167,0.75) 28%, rgba(209,43,56,0.7) 62%, transparent 100%);
+      transform: rotate(-5deg);
+      box-shadow: 0 0 18px rgba(209,43,56,0.22);
+    }
+    .transition-art::after {
+      right: -4%;
+      bottom: 28px;
+      width: 54%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 30%, rgba(240,211,167,0.45) 68%, transparent 100%);
+      transform: rotate(6deg);
+    }
+    .transition-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .transition-mark img {
+      width: 34px;
+      height: auto;
+      opacity: 0.95;
+    }
+
+    .glass {
+      position: relative; overflow: hidden; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.11); box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .glass::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 38%, transparent 65%, rgba(209,43,56,0.08));
+    }
+
+    .section-card, .contact-card, .form-card { padding: 26px; }
+
+    form { display: grid; gap: 14px; position: relative; z-index: 1; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    input, textarea, select {
+      width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06); color: white; font: inherit; outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: #98a5aa; }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(255,100,112,0.55); box-shadow: 0 0 0 4px rgba(209,43,56,0.14);
+    }
+    textarea { min-height: 105px; resize: vertical; }
+    .fine { font-size: 0.84rem; color: var(--muted); margin: 0; }
+
+    section { padding: 48px 0; }
+    .section-head { max-width: 700px; margin-bottom: 22px; }
+    .section-head p { color: var(--muted); margin: 0; }
+
+    .what-grid, .process-grid, .why-grid {
+      display: grid; gap: 18px;
+    }
+    .what-grid { grid-template-columns: repeat(3, 1fr); }
+    .process-grid { grid-template-columns: repeat(3, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .what-card, .process-card, .why-card {
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+    .what-card:hover, .process-card:hover, .why-card:hover { transform: translateY(-5px); }
+
+    .what-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px 8px 24px 8px;
+    }
+    .process-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border-left: 3px solid rgba(209,43,56,0.7);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.14);
+      border-radius: 18px;
+    }
+    .what-card p, .process-card p, .why-card p { color: var(--muted); margin: 0; }
+    .num {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+      background: rgba(209,43,56,0.18); border: 1px solid rgba(255,255,255,0.08); font-weight: 800; margin-bottom: 14px;
+    }
+
+    .contact-wrap { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 18px; }
+    .contact-list { display: grid; gap: 14px; margin-top: 18px; }
+    .contact-item {
+      padding: 16px 18px; border-radius: 8px 18px 8px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    }
+    .contact-item strong { display: block; margin-bottom: 4px; }
+    .contact-item span { color: var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .footer { padding: 26px 0 98px; color: var(--muted); font-size: 0.94rem; }
+    .divider { height: 1px; background: rgba(255,255,255,0.10); margin-top: 12px; }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 30;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(7,17,20,0.88);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.30);
+    }
+    .mobile-cta .btn {
+      flex: 1;
+      width: auto;
+      padding: 14px 16px;
+    }
+
+    @media (max-width: 1020px) {
+      .divider-layout, .what-grid, .process-grid, .why-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 52px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .brand-logo { display: none; }
+      .brand-mark-small { display: block; }
+      .slash-panel { clip-path: none; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <img class="brand-logo" src="assets/logo-mark-light.svg" alt="Harris Homes" />
+        <img class="brand-mark-small" src="assets/logo-mark-light.svg" alt="Harris Homes" />
+      </a>
+      <nav class="nav-links">
+        <a href="#what-we-buy">What We Buy</a>
+        <a href="#process">Process</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="#lead-form">Get My Offer</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="container hero-grid">
+        <div class="reveal visible">
+          <h1>Sell your property without the usual drag.</h1>
+          <div class="type-line" aria-live="polite"><span id="typed-copy"></span><span class="cursor">|</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="divider-band" id="lead-form">
+      <div class="container">
+        <div class="glass form-card reveal">
+          <h2 style="position:relative; z-index:1;">Get started</h2>
+          <form class="lead-form" data-form-name="Main lead form">
+            <input type="text" name="property-address" placeholder="Property address" />
+            <div class="grid-2">
+              <input type="text" name="name" placeholder="Your name" />
+              <input type="tel" name="phone" placeholder="Phone number" />
+            </div>
+            <div class="grid-2">
+              <input type="email" name="email" placeholder="Email address" />
+              <select name="property-type">
+                <option value="">Property type</option>
+                <option>Residential</option>
+                <option>Commercial</option>
+                <option>Land</option>
+              </select>
+            </div>
+            <textarea name="details" placeholder="Tell us anything helpful about the property or situation"></textarea>
+            <button class="btn btn-primary" type="submit">Request My Offer</button>
+            <p class="fine">No obligation. No pressure. We’ll review the property details and follow up directly.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="what-we-buy">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>What we buy</h2>
+        </div>
+        <div class="what-grid">
+          <div class="what-card reveal">
+            <h3>Residential property</h3>
+            <p>Primary homes, rentals, inherited property, and as-is residential opportunities.</p>
+          </div>
+          <div class="what-card reveal">
+            <h3>Commercial property</h3>
+            <p>Commercial real estate that needs a direct, professional acquisition path.</p>
+          </div>
+          <div class="what-card reveal">
+            <h3>Land</h3>
+            <p>Vacant land and land opportunities where a straightforward sale makes more sense.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Simple process</h2>
+          <p>The important stuff, without the extra noise.</p>
+        </div>
+        <div class="process-grid">
+          <div class="process-card reveal">
+            <div class="num">1</div>
+            <h3>Send the address</h3>
+            <p>Tell us what you have and where it’s located.</p>
+          </div>
+          <div class="process-card reveal">
+            <div class="num">2</div>
+            <h3>We review it</h3>
+            <p>We look at the property, the situation, and the best path forward.</p>
+          </div>
+          <div class="process-card reveal">
+            <div class="num">3</div>
+            <h3>We talk options</h3>
+            <p>Clear next steps, professional communication, and no pressure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Why sellers work with Harris Homes</h2>
+          <p>Confidence comes from clarity, not over-explaining.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal">
+            <h3>Sell as-is</h3>
+            <p>No cleanup, no repair list, and no unnecessary friction.</p>
+          </div>
+          <div class="why-card reveal">
+            <h3>Professional process</h3>
+            <p>Serious communication, straightforward expectations, and a cleaner experience.</p>
+          </div>
+          <div class="why-card reveal">
+            <h3>Flexible timing</h3>
+            <p>Move fast when needed or work around the timing that fits your situation.</p>
+          </div>
+          <div class="why-card reveal">
+            <h3>Multiple property types</h3>
+            <p>Residential, commercial, and land all fit the model.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="glass contact-card reveal">
+          <h2>Ready to talk about your property?</h2>
+          <p style="color:var(--muted);">If you want a professional, straightforward path, Harris Homes is ready to talk.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Call or text</strong>
+              <span>931-561-5468</span>
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong>
+              <span>Tj@goharrishomes.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Service area</strong>
+              <span>Nashville, Clarksville, Guthrie, and surrounding areas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="divider"></div>
+      <p>© 2026 Harris Homes.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a class="btn btn-primary" href="tel:9315615468">Call 931-561-5468</a>
+    <a class="btn btn-secondary" href="#lead-form">Get Offer</a>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if (!el.classList.contains('visible')) el.style.transitionDelay = `${Math.min(index * 40, 220)}ms`;
+      observer.observe(el);
+    });
+
+    const typedTarget = document.getElementById('typed-copy');
+    const typedText = 'The last thing you should have to worry about is selling your property. We make the process simple, fast, and stress-free.';
+    let typedIndex = 0;
+
+    function typeHeroCopy() {
+      if (!typedTarget) return;
+      if (typedIndex < typedText.length) {
+        typedTarget.textContent += typedText.charAt(typedIndex);
+        typedIndex += 1;
+        setTimeout(typeHeroCopy, 38);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(typeHeroCopy, 350);
+    });
+
+    const buildMailtoBody = (form) => {
+      const data = new FormData(form);
+      const lines = [
+        `Form: ${form.dataset.formName || 'Website lead form'}`,
+        `Property address: ${data.get('property-address') || ''}`,
+        `Name: ${data.get('name') || ''}`,
+        `Phone: ${data.get('phone') || ''}`,
+        `Email: ${data.get('email') || ''}`,
+        `Property type: ${data.get('property-type') || ''}`,
+        `Details: ${data.get('details') || ''}`
+      ];
+      return lines.join('\n');
+    };
+
+    document.querySelectorAll('.lead-form').forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const subject = 'New Harris Homes seller lead';
+        const body = buildMailtoBody(form);
+        window.location.href = `mailto:Tj@goharrishomes.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    });
+  </script>
+</body>
+</html>
