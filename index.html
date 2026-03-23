@@ -81,16 +81,6 @@
       color: white;
       box-shadow: 0 18px 36px rgba(209,43,56,0.28);
     }
-    .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: white;
-      border-color: rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.18);
-    }
 
     .hero {
       position: relative;
@@ -109,7 +99,7 @@
       display: grid; grid-template-columns: 1fr; gap: 26px; align-items: center; position: relative; z-index: 1;
     }
     h1,h2,h3 { line-height: 1.04; margin: 0 0 14px; }
-    h1 { font-size: clamp(2.9rem, 7vw, 5.8rem); letter-spacing: -0.06em; max-width: 9ch; }
+    h1 { font-size: clamp(2.9rem, 7vw, 5.8rem); letter-spacing: -0.06em; max-width: 8.5ch; }
     h2 { font-size: clamp(1.8rem, 3.2vw, 2.9rem); letter-spacing: -0.04em; }
     h3 { font-size: 1.08rem; }
     .lead { font-size: 1.06rem; color: var(--muted); max-width: 56ch; margin-bottom: 22px; }
@@ -127,9 +117,67 @@
       color: var(--red-2);
       animation: blink 1s step-end infinite;
     }
-    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
 
-    .divider-band { padding: 18px 0 42px; }
+    .divider-band {
+      padding: 18px 0 42px;
+    }
+    .transition-art {
+      position: relative;
+      height: 120px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.03), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 80%);
+    }
+    .transition-art::before,
+    .transition-art::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      display: block;
+    }
+    .transition-art::before {
+      left: -2%;
+      top: 28px;
+      width: 72%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(240,211,167,0.75) 28%, rgba(209,43,56,0.7) 62%, transparent 100%);
+      transform: rotate(-5deg);
+      box-shadow: 0 0 18px rgba(209,43,56,0.22);
+    }
+    .transition-art::after {
+      right: -4%;
+      bottom: 28px;
+      width: 54%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 30%, rgba(240,211,167,0.45) 68%, transparent 100%);
+      transform: rotate(6deg);
+    }
+    .transition-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .transition-mark img {
+      width: 34px;
+      height: auto;
+      opacity: 0.95;
+    }
 
     .glass {
       position: relative; overflow: hidden; border-radius: var(--radius);
@@ -141,12 +189,10 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 38%, transparent 65%, rgba(209,43,56,0.08));
     }
 
-    .contact-card, .form-card { padding: 26px; }
+    .section-card, .contact-card, .form-card { padding: 26px; }
 
     form { display: grid; gap: 14px; position: relative; z-index: 1; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field { display: grid; gap: 8px; }
-    .field label { font-size: 0.92rem; font-weight: 600; color: var(--text); }
     input, textarea, select {
       width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.06); color: white; font: inherit; outline: none;
@@ -162,19 +208,19 @@
     .section-head { max-width: 700px; margin-bottom: 22px; }
     .section-head p { color: var(--muted); margin: 0; }
 
-    .what-grid, .process-grid, .why-grid, .compare-grid, .faq-grid {
+    .what-grid, .process-grid, .why-grid {
       display: grid; gap: 18px;
     }
     .what-grid { grid-template-columns: repeat(3, 1fr); }
     .process-grid { grid-template-columns: repeat(3, 1fr); }
-    .why-grid, .compare-grid, .faq-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .what-card, .process-card, .why-card, .compare-card, .faq-card, .notice-bar {
+    .what-card, .process-card, .why-card {
       padding: 24px;
       box-shadow: var(--shadow);
       transition: transform .25s ease, border-color .25s ease, background .25s ease;
     }
-    .what-card:hover, .process-card:hover, .why-card:hover, .compare-card:hover, .faq-card:hover { transform: translateY(-5px); }
+    .what-card:hover, .process-card:hover, .why-card:hover { transform: translateY(-5px); }
 
     .what-card {
       background: rgba(255,255,255,0.04);
@@ -194,22 +240,13 @@
       border: 1px dashed rgba(255,255,255,0.14);
       border-radius: 18px;
     }
-    .compare-card, .faq-card, .notice-bar {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-    }
-    .notice-bar {
-      margin-top: 24px;
-      background: linear-gradient(180deg, rgba(240,211,167,0.10), rgba(255,255,255,0.04));
-      border-color: rgba(240,211,167,0.26);
-    }
-    .what-card p, .process-card p, .why-card p, .compare-card p, .faq-card p, .notice-bar p { color: var(--muted); margin: 0; }
+    .what-card p, .process-card p, .why-card p { color: var(--muted); margin: 0; }
     .num {
       width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
       background: rgba(209,43,56,0.18); border: 1px solid rgba(255,255,255,0.08); font-weight: 800; margin-bottom: 14px;
     }
 
+    .contact-wrap { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 18px; }
     .contact-list { display: grid; gap: 14px; margin-top: 18px; }
     .contact-item {
       padding: 16px 18px; border-radius: 8px 18px 8px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
@@ -245,7 +282,7 @@
     }
 
     @media (max-width: 1020px) {
-      .what-grid, .process-grid, .why-grid, .compare-grid, .faq-grid { grid-template-columns: 1fr; }
+      .divider-layout, .what-grid, .process-grid, .why-grid, .contact-wrap { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
     @media (max-width: 640px) {
@@ -254,7 +291,7 @@
       .btn { width: 100%; }
       .brand-logo { display: none; }
       .brand-mark-small { display: block; }
-      .mobile-cta { display: flex; }
+      .slash-panel { clip-path: none; border-radius: 20px; }
     }
   </style>
 </head>
@@ -268,10 +305,7 @@
       <nav class="nav-links">
         <a href="#what-we-buy">What We Buy</a>
         <a href="#process">Process</a>
-        <a href="#offers-work">Offers</a>
         <a href="#why-us">Why Us</a>
-        <a href="#compare">Compare</a>
-        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
       <a class="btn btn-primary" href="#lead-form">Get My Offer</a>
@@ -284,13 +318,8 @@
       <div class="orb orb-2"></div>
       <div class="container hero-grid">
         <div class="reveal visible">
-          <h1>Sell your Tennessee property as-is without the usual drag.</h1>
-          <p class="lead">Harris Homes works with owners across Middle Tennessee who want a direct, professional sale for residential property, commercial property, or land.</p>
+          <h1>Sell your property without the usual drag.</h1>
           <div class="type-line" aria-live="polite"><span id="typed-copy"></span><span class="cursor">|</span></div>
-          <div class="notice-bar reveal visible" style="transition-delay: 120ms;">
-            <h3>Not every property should be sold this way</h3>
-            <p>If listing the property is likely to put more money in your pocket and you have the time to wait, that may be the better route. If speed, simplicity, privacy, or property condition matter more, a direct sale can make sense.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -299,40 +328,22 @@
       <div class="container">
         <div class="glass form-card reveal">
           <h2 style="position:relative; z-index:1;">Get started</h2>
-          <form class="lead-form" data-form-name="Main lead form">
-            <div class="field">
-              <label for="property-address">Property address</label>
-              <input id="property-address" type="text" name="address" placeholder="123 Main St" autocomplete="street-address" required />
+          <form class="lead-form" data-form-name="Main lead form" action="https://formspree.io/f/xzdjlzqa" method="POST">
+            <input type="text" name="address" placeholder="Property address" />
+            <div class="grid-2">
+              <input type="text" name="name" placeholder="Your name" />
+              <input type="tel" name="phone" placeholder="Phone number" />
             </div>
             <div class="grid-2">
-              <div class="field">
-                <label for="seller-name">Your name</label>
-                <input id="seller-name" type="text" name="name" placeholder="Your name" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="seller-phone">Phone number</label>
-                <input id="seller-phone" type="tel" name="phone" placeholder="Phone number" autocomplete="tel" inputmode="tel" required />
-              </div>
+              <input type="email" name="email" placeholder="Email address" />
+              <select name="property-type">
+                <option value="">Property type</option>
+                <option>Residential</option>
+                <option>Commercial</option>
+                <option>Land</option>
+              </select>
             </div>
-            <div class="grid-2">
-              <div class="field">
-                <label for="seller-email">Email address</label>
-                <input id="seller-email" type="email" name="email" placeholder="Email address" autocomplete="email" />
-              </div>
-              <div class="field">
-                <label for="property-type">Property type</label>
-                <select id="property-type" name="property-type" required>
-                  <option value="">Select one</option>
-                  <option>Residential</option>
-                  <option>Commercial</option>
-                  <option>Land</option>
-                </select>
-              </div>
-            </div>
-            <div class="field">
-              <label for="property-details">Anything helpful to know?</label>
-              <textarea id="property-details" name="details" placeholder="Condition, timeline, tenant situation, inherited property, or anything else helpful"></textarea>
-            </div>
+            <textarea name="message" placeholder="Tell us anything helpful about the property or situation"></textarea>
             <button class="btn btn-primary" type="submit">Request My Offer</button>
             <p class="fine">No obligation. No pressure. We’ll review the property details and follow up directly.</p>
           </form>
@@ -347,16 +358,16 @@
         </div>
         <div class="what-grid">
           <div class="what-card reveal">
-            <h3>Inherited or estate property</h3>
-            <p>When a house or parcel comes with cleanup, deferred maintenance, or a long to-do list, we can look at it as-is.</p>
+            <h3>Residential property</h3>
+            <p>Primary homes, rentals, inherited property, and as-is residential opportunities.</p>
           </div>
           <div class="what-card reveal">
-            <h3>Rental, vacant, or tired property</h3>
-            <p>Landlords, absentee owners, and owners of vacant property often want a cleaner exit without repairs and listing prep.</p>
+            <h3>Commercial property</h3>
+            <p>Commercial real estate that needs a direct, professional acquisition path.</p>
           </div>
           <div class="what-card reveal">
-            <h3>Homes, commercial property, and land</h3>
-            <p>We review residential property, commercial opportunities, and land across Nashville, Clarksville, Guthrie, and nearby markets.</p>
+            <h3>Land</h3>
+            <p>Vacant land and land opportunities where a straightforward sale makes more sense.</p>
           </div>
         </div>
       </div>
@@ -383,33 +394,6 @@
             <div class="num">3</div>
             <h3>We talk options</h3>
             <p>Clear next steps, professional communication, and no pressure.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="offers-work">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>How our offers work</h2>
-          <p>A simple review process, clear communication, and no obligation to move forward.</p>
-        </div>
-        <div class="compare-grid">
-          <div class="compare-card reveal">
-            <h3>1) You send the basics</h3>
-            <p>Share the address, property type, and anything important about condition, tenants, timing, or the situation.</p>
-          </div>
-          <div class="compare-card reveal">
-            <h3>2) We review the opportunity</h3>
-            <p>We look at the property, location, and situation to decide whether a direct purchase is a fit and what structure may make sense.</p>
-          </div>
-          <div class="compare-card reveal">
-            <h3>3) We discuss next steps</h3>
-            <p>If it looks like a fit, we talk through the option clearly. If it is not the right fit, you are not pushed into anything.</p>
-          </div>
-          <div class="compare-card reveal">
-            <h3>4) You decide</h3>
-            <p>The goal is a clean option, not pressure. You can move forward if it makes sense for you and pass if it does not.</p>
           </div>
         </div>
       </div>
@@ -442,52 +426,6 @@
       </div>
     </section>
 
-    <section id="compare">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Why some sellers choose a direct sale instead of listing</h2>
-          <p>Listing can be the better move for some properties. A direct sale usually wins when convenience matters more than squeezing out the last dollar.</p>
-        </div>
-        <div class="compare-grid">
-          <div class="compare-card reveal">
-            <h3>When listing may make more sense</h3>
-            <p>You have time, the property shows well, repairs are manageable, and your main goal is maximizing sale price.</p>
-          </div>
-          <div class="compare-card reveal">
-            <h3>When a direct sale may make more sense</h3>
-            <p>The property needs work, the situation is time-sensitive, or you want a simpler sale without open houses, contractor bids, and buyer fallout.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Common questions</h2>
-          <p>Straight answers to the things sellers usually want to know first.</p>
-        </div>
-        <div class="faq-grid">
-          <div class="faq-card reveal">
-            <h3>Do I need to repair or clean up the property first?</h3>
-            <p>No. Harris Homes reviews properties as-is, including ones with deferred maintenance, problem tenants, inherited contents, or cosmetic issues.</p>
-          </div>
-          <div class="faq-card reveal">
-            <h3>How fast can this move?</h3>
-            <p>That depends on the property and your timeline. Some situations move quickly, while others need a little more review. The point is flexibility, not pressure.</p>
-          </div>
-          <div class="faq-card reveal">
-            <h3>Will I be pushed into an offer?</h3>
-            <p>No. If the fit is not there, you can walk away. The goal is a clear conversation and an option that makes sense for your situation.</p>
-          </div>
-          <div class="faq-card reveal">
-            <h3>What kinds of properties do you look at?</h3>
-            <p>Residential property, commercial property, and land in Nashville, Clarksville, Guthrie, and surrounding Middle Tennessee markets.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="contact">
       <div class="container">
         <div class="glass contact-card reveal">
@@ -495,12 +433,12 @@
           <p style="color:var(--muted);">If you want a professional, straightforward path, Harris Homes is ready to talk.</p>
           <div class="contact-list">
             <div class="contact-item">
-              <strong>Call</strong>
-              <span><a href="tel:9315615468">931-561-5468</a></span>
+              <strong>Call or text</strong>
+              <span>931-561-5468</span>
             </div>
             <div class="contact-item">
               <strong>Email</strong>
-              <span><a href="mailto:Tj@goharrishomes.com">Tj@goharrishomes.com</a></span>
+              <span>Tj@goharrishomes.com</span>
             </div>
             <div class="contact-item">
               <strong>Service area</strong>
@@ -510,6 +448,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
@@ -537,7 +476,7 @@
     });
 
     const typedTarget = document.getElementById('typed-copy');
-    const typedText = 'No commissions. No repair list. No pressure. Just a straightforward conversation about the property and your options.';
+    const typedText = 'The last thing you should have to worry about is selling your property. We make the process simple, fast, and stress-free.';
     let typedIndex = 0;
 
     function typeHeroCopy() {
@@ -553,21 +492,26 @@
       setTimeout(typeHeroCopy, 350);
     });
 
-    document.querySelectorAll('.lead-form').forEach((form) => {
-      form.addEventListener('submit', () => {
-        const button = form.querySelector('button[type="submit"]');
-        if (button) {
-          button.disabled = true;
-          button.textContent = 'Sending...';
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    const buildMailtoBody = (form) => {
+      const data = new FormData(form);
+      const lines = [
+        `Form: ${form.dataset.formName || 'Website lead form'}`,
+        `Property address: ${data.get('property-address') || ''}`,
+        `Name: ${data.get('name') || ''}`,
+        `Phone: ${data.get('phone') || ''}`,
+        `Email: ${data.get('email') || ''}`,
+        `Property type: ${data.get('property-type') || ''}`,
+        `Details: ${data.get('details') || ''}`
+      ];
+      return lines.join('\n');
+    };
 
-</html>
-, 1200);
+    document.querySelectorAll('.lead-form').forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const subject = 'New Harris Homes seller lead';
+        const body = buildMailtoBody(form);
+        window.location.href = `mailto:Tj@goharrishomes.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       });
     });
   </script>
